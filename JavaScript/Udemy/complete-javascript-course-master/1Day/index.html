@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <title>JavaScript Fundamentals – Part 1</title>
+    <title>KeyCloak DEMO</title>
     <style>
       body {
         height: 100vh;
@@ -24,12 +24,35 @@
     </style>
   </head>
 
-  <body>
-    <h1>JavaScript Fundamentals – Part 1</h1>
+  <html>
+    <head>
+      <script
+        type="text/javascript"
+        src="http://localhost:8080/js/keycloak.js"
+      ></script>
+      <script>
+        function initKeycloak() {
+          keycloak = new Keycloak({
+            realm: "frontend",
+            clientId: "mvp-nachzahlung",
+          });
+          keycloak
+            .init({ onLoad: "login-required" })
+            .success(function () {
+              console.log("User is now authenticated.");
+              if (keycloak.authenticated) {
+                showProfile();
+              }
+            })
+            .error(function () {
+              console.log("User is NOT authenticated.");
+            });
+        }
+      </script>
+    </head>
 
-    </div>
-    <script src="script.js"></script>
-  </body>
-
-
+    <body onLoad="initKeycloak()">
+      <h1>Eingeloggt</h1>
+    </body>
+  </html>
 </html>
