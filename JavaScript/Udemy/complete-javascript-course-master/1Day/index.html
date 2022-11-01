@@ -21,38 +21,53 @@
         text-align: center;
         color: white;
       }
+      button {
+        font-size: 16px;
+        text-align: center;
+        margin: auto;
+      }
+      .button-container-div {
+        width: 300px;
+        height: 300px;
+        margin: auto;
+      }
     </style>
   </head>
 
-  <html>
-    <head>
-      <script
-        type="text/javascript"
-        src="http://localhost:8080/js/keycloak.js"
-      ></script>
-      <script>
-        function initKeycloak() {
-          keycloak = new Keycloak({
-            realm: "frontend",
-            clientId: "mvp-nachzahlung",
+  <head>
+    <script
+      type="text/javascript"
+      src="http://localhost:8080/js/keycloak.js"
+    ></script>
+    <script>
+      function initKeycloak() {
+        keycloak = new Keycloak({
+          realm: "frontend",
+          clientId: "mvp-nachzahlung",
+        });
+        keycloak
+          .init({ onLoad: "login-required" })
+          .success(function () {
+            console.log("User is now authenticated.");
+            if (keycloak.authenticated) {
+              showProfile();
+              // window.location.href = "http://net-informations.com";
+            }
+          })
+          .error(function () {
+            console.log("User is NOT authenticated.");
           });
-          keycloak
-            .init({ onLoad: "login-required" })
-            .success(function () {
-              console.log("User is now authenticated.");
-              if (keycloak.authenticated) {
-                showProfile();
-              }
-            })
-            .error(function () {
-              console.log("User is NOT authenticated.");
-            });
-        }
-      </script>
-    </head>
-
-    <body onLoad="initKeycloak()">
-      <h1>Eingeloggt</h1>
-    </body>
-  </html>
+      }
+    </script>
+  </head>
+  <body>
+    <div class="container">
+      <div class="row">
+        <div class="col-xs-12">
+          <h1>KeyCloak DEMO</h1>
+          <button onclick="initKeycloak()" type="button">Log In</button>
+        </div>
+      </div>
+    </div>
+  </body>
 </html>
