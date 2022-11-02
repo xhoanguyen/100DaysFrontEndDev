@@ -1,0 +1,11 @@
+Angular/sales-project/.editorconfig
+Angular/sales-project/angular.json
+Angular/sales-project/karma.conf.js
+Angular/sales-project/package-lock.json
+Angular/sales-project/package.json
+Angular/sales-project/tsconfig.app.json
+Angular/sales-project/tsconfig.spec.json
+Angular/sales-project/.vscode/extensions.json
+Angular/sales-project/.vscode/launch.json
+Angular/sales-project/.vscode/tasks.json
+Angular/sales-project/src/favicon.ico
